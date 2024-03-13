@@ -14,6 +14,11 @@
                 @endif
             </p>
             <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary">Modifica</a>
+            <form action="{{ route('projects.destroy', $project->id) }}" method="POST" style="display: inline-block;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Elimina</button>
+            </form>
         </div>
     </div>
 @endsection
