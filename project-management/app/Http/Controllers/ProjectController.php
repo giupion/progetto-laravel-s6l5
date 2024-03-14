@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
     // Visualizzazione dell'elenco di tutti i progetti
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::with(['tasks', 'user'])->get();
         return view('projects.index', compact('projects'));
     }
 
@@ -29,17 +30,15 @@ class ProjectController extends Controller
     // Salva un nuovo progetto
     public function store(Request $request)
     {
-        // Validazione dei dati inviati dal form
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            // Altri campi se necessario
         ]);
 
-        // Creazione del nuovo progetto
-        $project = Project::create($validatedData);
+        $validatedData['user_id'] = Auth::id();
+        Project::create($validatedData);
 
-        return redirect()->route('projects.show', $project->id);
+        return redirect()->route('projects.index');
     }
 
     // Modifica di un progetto esistente (form)
@@ -51,14 +50,11 @@ class ProjectController extends Controller
     // Aggiorna un progetto esistente
     public function update(Request $request, Project $project)
     {
-        // Validazione dei dati inviati dal form
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            // Altri campi se necessario
         ]);
 
-        // Aggiornamento del progetto
         $project->update($validatedData);
 
         return redirect()->route('projects.show', $project->id);

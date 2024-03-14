@@ -1,13 +1,21 @@
-<!-- resources/views/projects/index.blade.php -->
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Elenco Progetti') }}
+        </h2>
+    </x-slot>
 
-@section('content')
-    <h1 class="mb-4">Elenco Progetti</h1>
-    <ul class="list-group">
-        @foreach($projects as $project)
-            <li class="list-group-item">
-                <a href="{{ route('projects.show', $project->id) }}">{{ $project->title }}</a>
-            </li>
-        @endforeach
-    </ul>
-@endsection
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                    <ul>
+                        @foreach($projects as $project)
+                            <li><a href="{{ route('projects.show', $project->id) }}">{{ $project->title }}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

@@ -1,41 +1,21 @@
 <?php
-// database/seeders/UserSeeder.php
 
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UsersSeeder extends Seeder
 {
     public function run()
     {
-        // Crea alcuni utenti con dati predefiniti
-        $usersData = [
-            [
-                'name' => 'Giuseppe',
-                'surname' => 'Sansone',
-                'email' => 'giuseppe@example.com',
-                'password' => bcrypt('password'),
-                'languages_known' => json_encode(['PHP', 'JavaScript']),
-                'seniority' => 'Senior',
-            ],
-            [
-                'name' => 'Jane',
-                'surname' => 'Doe',
-                'email' => 'jane@example.com',
-                'password' => bcrypt('password'),
-                'languages_known' => json_encode(['Java', 'Python']),
-                'seniority' => 'Junior',
-            ],
-            // Aggiungi altri utenti se necessario
-        ];
-
-        foreach ($usersData as $userData) {
-            // Verifica se l'utente con la stessa email esiste già nel database
-            if (!User::where('email', $userData['email'])->exists()) {
-                User::create($userData);
-            }
-        }
+        // Creazione di un nuovo utente
+        $user = new User();
+        $user->name = 'John';
+        $user->surname = 'Doe';
+        $user->email = 'john@example.com';
+        $user->password = Hash::make('password');
+        $user->save();
     }
 }

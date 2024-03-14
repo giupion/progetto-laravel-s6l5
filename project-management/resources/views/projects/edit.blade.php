@@ -1,21 +1,29 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Modifica Progetto') }}
+        </h2>
+    </x-slot>
 
-@section('content')
-    <div class="container">
-        <h1>Modifica Progetto</h1>
-        <form action="{{ route('projects.update', $project->id) }}" method="post">
-            @csrf
-            @method('PUT')
-            <div class="form-group">
-                <label for="title">Titolo:</label>
-                <input type="text" name="title" id="title" class="form-control" value="{{ $project->title }}">
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                    <form action="{{ route('projects.update', $project->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="mb-4">
+                            <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Titolo</label>
+                            <input type="text" name="title" id="title" class="form-input mt-1 block w-full" value="{{ $project->title }}">
+                        </div>
+                        <div class="mb-4">
+                            <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Descrizione</label>
+                            <textarea name="description" id="description" rows="3" class="form-textarea mt-1 block w-full">{{ $project->description }}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Aggiorna Progetto</button>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="description">Descrizione:</label>
-                <textarea name="description" id="description" class="form-control" rows="3">{{ $project->description }}</textarea>
-            </div>
-            <!-- Altri campi del progetto se necessario -->
-            <button type="submit" class="btn btn-primary">Aggiorna Progetto</button>
-        </form>
+        </div>
     </div>
-@endsection
+</x-app-layout>
