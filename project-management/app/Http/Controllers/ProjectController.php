@@ -31,7 +31,7 @@ class ProjectController extends Controller
     {
         return view('projects.create');
     }
-
+//mio
     // Salva un nuovo progetto
     public function store(Request $request)
     {
