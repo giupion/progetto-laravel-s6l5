@@ -11,7 +11,12 @@ class ProjectController extends Controller
     // Visualizzazione dell'elenco di tutti i progetti
     public function index()
     {
-        $projects = Project::with(['tasks', 'user'])->get();
+        // Recupera l'ID dell'utente corrente
+        $userId = auth()->id();
+
+        // Recupera solo i progetti dell'utente corrente
+        $projects = Project::where('user_id', $userId)->get();
+
         return view('projects.index', compact('projects'));
     }
 
