@@ -21,7 +21,7 @@
                     <h3 class="text-lg font-semibold mb-4 text-white">Attività del Progetto</h3>
 <ul class="list-disc text-white">
     @foreach($project->tasks as $task)
-        <li>{{ $task->name }}</li>
+        <li>{{ $task->title }}</li>
     @endforeach
 </ul
                     <!-- Bottoni Modifica ed Elimina progetto -->
