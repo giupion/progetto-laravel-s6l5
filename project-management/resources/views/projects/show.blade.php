@@ -13,14 +13,17 @@
                     <h3 class="text-lg font-semibold mb-4 text-white">Dettagli del Progetto</h3>
                     <p class="text-white"><strong>Titolo:</strong> {{ $project->title }}</p>
                     <p class="text-white"><strong>Descrizione:</strong> {{ $project->description }}</p>
+                    <h3 class="text-white"><strong>Linguaggi Usati:</strong> {{ $project->language_used }}</h3>
+                    <p class="text-white"><strong>Data Inizio: </strong>{{ $project->start_date }}</p>
+                    <p class="text-white"><strong>Scadenza: </strong>{{ $project->expire_date }}</p>
 
                     <!-- Bottoni Modifica ed Elimina progetto -->
                     <div class="mt-4">
-                        <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary text-white">Modifica</a>
+                        <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary text-white"><strong>Modifica</strong></a>
                         <form action="{{ route('projects.destroy', $project->id) }}" method="POST" style="display:inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger text-white" onclick="return confirm('Sei sicuro di voler eliminare questo progetto?')">Elimina</button>
+                            <button type="submit" class="btn btn-danger text-white" onclick="return confirm('Sei sicuro di voler eliminare questo progetto?')"><strong>Elimina</strong></button>
                         </form>
                     </div>
                 </div>

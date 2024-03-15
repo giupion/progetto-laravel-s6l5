@@ -35,14 +35,22 @@ class ProjectController extends Controller
     // Salva un nuovo progetto
     public function store(Request $request)
     {
+        // Validazione dei dati inviati dal form
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
+            'language_used' => 'nullable|string',
+            'start_date' => 'nullable|date',
+            'expire_date' => 'nullable|date',
         ]);
-
+    
+        // Aggiungi l'ID dell'utente autenticato ai dati validati
         $validatedData['user_id'] = Auth::id();
+    
+        // Crea un nuovo progetto con i dati validati
         Project::create($validatedData);
-
+    
+        // Reindirizza all'elenco dei progetti dopo aver salvato il nuovo progetto
         return redirect()->route('projects.index');
     }
 
@@ -54,17 +62,22 @@ class ProjectController extends Controller
 
     // Aggiorna un progetto esistente
     public function update(Request $request, Project $project)
-    {
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-        ]);
+{
+    // Validazione dei dati inviati dal form
+    $validatedData = $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+        'language_used' => 'nullable|string',
+        'start_date' => 'nullable|date',
+        'expire_date' => 'nullable|date',
+    ]);
 
-        $project->update($validatedData);
+    // Aggiorna i dati del progetto con i nuovi dati validati
+    $project->update($validatedData);
 
-        return redirect()->route('projects.show', $project->id);
-    }
-
+    // Reindirizza alla visualizzazione del progetto dopo averlo aggiornato
+    return redirect()->route('projects.show', $project->id);
+}
     // Eliminazione di un progetto
     public function destroy(Project $project)
     {
