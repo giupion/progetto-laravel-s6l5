@@ -23,6 +23,7 @@ class ProjectController extends Controller
     // Visualizzazione dei dettagli di un singolo progetto
     public function show(Project $project)
     {
+        $project->load('tasks');
         return view('projects.show', compact('project'));
     }
 

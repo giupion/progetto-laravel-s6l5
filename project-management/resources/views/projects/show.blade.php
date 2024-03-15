@@ -17,6 +17,13 @@
                     <p class="text-white"><strong>Data Inizio: </strong>{{ $project->start_date }}</p>
                     <p class="text-white"><strong>Scadenza: </strong>{{ $project->expire_date }}</p>
 
+
+                    <h3 class="text-lg font-semibold mb-4 text-white">Attività del Progetto</h3>
+<ul class="list-disc text-white">
+    @foreach($project->tasks as $task)
+        <li>{{ $task->name }}</li>
+    @endforeach
+</ul
                     <!-- Bottoni Modifica ed Elimina progetto -->
                     <div class="mt-4">
                         <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary text-white"><strong>Modifica</strong></a>
