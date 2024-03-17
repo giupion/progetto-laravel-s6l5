@@ -22,14 +22,14 @@
                     </div>
 
                     <!-- Pulsanti per modificare ed eliminare il progetto -->
-                    <div class="flex mt-6">
-                        <a class="text-white" href="{{ route('projects.edit', $project) }}" class="btn btn-primary mr-2">Modifica Progetto</a>
-                        <form action="{{ route('projects.destroy', $project) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger text-white">Elimina Progetto</button>
-                        </form>
-                    </div>
+                    <div class="flex mt-4">
+    <a href="{{ route('projects.edit', $project) }}" class="btn btn-primary mr-4 text-white">Modifica Progetto</a>
+    <form action="{{ route('projects.destroy', $project) }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger text-white">Elimina Progetto</button>
+    </form>
+</div>
                 </div>
             </div>
         </div>
@@ -58,8 +58,9 @@
         </div>
     </div>
 
-    <!-- Visualizzazione delle attività associate al progetto -->
-    <<!-- Visualizzazione delle attività associate al progetto -->
+
+   
+<!-- Visualizzazione delle attività associate al progetto -->
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -71,6 +72,7 @@
                             <p>{{ $task->title }}</p>
                             <div class="flex space-x-2">
                                 <a href="{{ route('tasks.edit', ['project' => $project->id, 'task' => $task->id]) }}" class="btn btn-primary">Modifica</a>
+                                <span class="inline-block w-2"></span> <!-- Aggiunto spazio -->
                                 <form action="{{ route('tasks.destroy', ['project' => $project->id, 'task' => $task->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -84,5 +86,6 @@
         </div>
     </div>
 </div>
+
 
 </x-app-layout>
