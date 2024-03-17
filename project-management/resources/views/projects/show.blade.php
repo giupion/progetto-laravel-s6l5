@@ -17,22 +17,40 @@
                     <p class="text-white"><strong>Data Inizio: </strong>{{ $project->start_date }}</p>
                     <p class="text-white"><strong>Scadenza: </strong>{{ $project->expire_date }}</p>
 
+                    <!-- Creazione di un'attività -->
+                    <h3 class="text-lg font-semibold mb-4 text-white">Crea Nuova Attività</h3>
+                    <form action="{{ route('tasks.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="project_id" value="{{ $project->id }}">
+                        <div class="mb-3">
+                            <label for="title" class="block text-white">Titolo</label>
+                            <input type="text" name="title" id="title" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="block text-white">Descrizione</label>
+                            <textarea name="description" id="description" class="form-control"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary text-white">Crea Attività</button>
+                    </form>
 
+                    <!-- Visualizzazione delle attività del progetto -->
                     <h3 class="text-lg font-semibold mb-4 text-white">Attività del Progetto</h3>
-<ul class="list-disc text-white">
-    @foreach($project->tasks as $task)
-        <li>{{ $task->title }}</li>
-    @endforeach
-</ul
-                    <!-- Bottoni Modifica ed Elimina progetto -->
-                    <div class="mt-4">
-                        <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary text-white"><strong>Modifica</strong></a>
-                        <form action="{{ route('projects.destroy', $project->id) }}" method="POST" style="display:inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger text-white" onclick="return confirm('Sei sicuro di voler eliminare questo progetto?')"><strong>Elimina</strong></button>
-                        </form>
-                    </div>
+                    <ul class="list-disc text-white">
+                        @foreach($project->tasks as $task)
+                            <li>
+                                {{ $task->title }}
+                                <!-- Bottoni Modifica ed Elimina attività -->
+                                
+
+                                <a href="{{ route('tasks.edit', ['project' => $project->id, 'task' => $task->id]) }}" class="btn btn-primary text-white"><strong>Modifica</strong></a>
+                                <form action="{{ route('tasks.destroy', ['project' => $project->id, 'task' => $task->id]) }}" method="POST" style="display:inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger text-white" onclick="return confirm('Sei sicuro di voler eliminare questa attività?')"><strong>Elimina</strong></button>
+                                </form>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
