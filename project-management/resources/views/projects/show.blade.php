@@ -59,26 +59,30 @@
     </div>
 
     <!-- Visualizzazione delle attività associate al progetto -->
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                    <h3 class="text-lg font-semibold mb-4 text-white">Attività del Progetto</h3>
-                    <ul class="list-disc text-white">
-                        @foreach($project->tasks as $task)
-                            <div>
-                                <p>{{ $task->title }}</p>
-                                <a href="{{ route('tasks.edit', ['project' => $project->id, 'task' => $task->id]) }}">Modifica</a>
+    <<!-- Visualizzazione delle attività associate al progetto -->
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                <h3 class="text-lg font-semibold mb-4 text-white">Attività del Progetto</h3>
+                <ul class="list-disc text-white">
+                    @foreach($project->tasks as $task)
+                        <div class="flex items-center justify-between">
+                            <p>{{ $task->title }}</p>
+                            <div class="flex space-x-2">
+                                <a href="{{ route('tasks.edit', ['project' => $project->id, 'task' => $task->id]) }}" class="btn btn-primary">Modifica</a>
                                 <form action="{{ route('tasks.destroy', ['project' => $project->id, 'task' => $task->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit">Elimina</button>
+                                    <button type="submit" class="btn btn-danger">Elimina</button>
                                 </form>
                             </div>
-                        @endforeach
-                    </ul>
-                </div>
+                        </div>
+                    @endforeach
+                </ul>
             </div>
         </div>
     </div>
+</div>
+
 </x-app-layout>

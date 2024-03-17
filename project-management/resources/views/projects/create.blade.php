@@ -19,7 +19,7 @@
                             <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Descrizione</label>
                             <textarea name="description" id="description" rows="3" class="form-textarea mt-1 block w-full" placeholder="Descrizione del progetto"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Salva</button>
+                        <button type="submit" class="btn btn-primary text-white">Salva</button>
                     </form>
                 </div>
             </div>
