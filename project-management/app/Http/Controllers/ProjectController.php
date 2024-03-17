@@ -32,7 +32,7 @@ class ProjectController extends Controller
     {
         return view('projects.create');
     }
-//mio
+
     // Salva un nuovo progetto
     public function store(Request $request)
     {
@@ -63,22 +63,23 @@ class ProjectController extends Controller
 
     // Aggiorna un progetto esistente
     public function update(Request $request, Project $project)
-{
-    // Validazione dei dati inviati dal form
-    $validatedData = $request->validate([
-        'title' => 'required|string|max:255',
-        'description' => 'required|string',
-        'language_used' => 'nullable|string',
-        'start_date' => 'nullable|date',
-        'expire_date' => 'nullable|date',
-    ]);
+    {
+        // Validazione dei dati inviati dal form
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'language_used' => 'nullable|string',
+            'start_date' => 'nullable|date',
+            'expire_date' => 'nullable|date',
+        ]);
 
-    // Aggiorna i dati del progetto con i nuovi dati validati
-    $project->update($validatedData);
+        // Aggiorna i dati del progetto con i nuovi dati validati
+        $project->update($validatedData);
 
-    // Reindirizza alla visualizzazione del progetto dopo averlo aggiornato
-    return redirect()->route('projects.show', $project->id);
-}
+        // Reindirizza alla visualizzazione del progetto dopo averlo aggiornato
+        return redirect()->route('projects.show', $project->id);
+    }
+
     // Eliminazione di un progetto
     public function destroy(Project $project)
     {
