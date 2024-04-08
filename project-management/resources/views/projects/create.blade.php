@@ -19,6 +19,18 @@
                             <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Descrizione</label>
                             <textarea name="description" id="description" rows="3" class="form-textarea mt-1 block w-full" placeholder="Descrizione del progetto"></textarea>
                         </div>
+                        <div class="mb-4">
+                            <label for="language_used" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Linguaggi Usati</label>
+                            <input type="text" name="language_used" id="language_used" class="form-input mt-1 block w-full" placeholder="Linguaggi utilizzati">
+                        </div>
+                        <div class="mb-4">
+                            <label for="start_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Data Inizio</label>
+                            <input type="date" name="start_date" id="start_date" class="form-input mt-1 block w-full">
+                        </div>
+                        <div class="mb-4">
+                            <label for="expire_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Scadenza</label>
+                            <input type="date" name="expire_date" id="expire_date" class="form-input mt-1 block w-full">
+                        </div>
                         <button type="submit" class="btn btn-primary text-white">Salva</button>
                     </form>
                 </div>
@@ -26,4 +38,3 @@
         </div>
     </div>
 </x-app-layout>
-
